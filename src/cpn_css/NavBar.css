@@ -1,0 +1,47 @@
+.navigation{
+    position: fixed;
+    display: block;
+    width: 70px;
+    height: 100%;
+    background-origin: padding-box;
+    background-attachment: scroll;
+    box-sizing: border-box;
+    background-color: #464852;
+    text-align: center;
+    opacity: 75%;
+}
+
+.navigation .nav{
+    text-align: center;
+    font-size: 170%;
+    width: 100%;
+    display: block;
+    color: white;
+}
+
+.navigation .logo{
+    padding-top: 0px; padding-bottom: 0px;
+    margin-bottom: 20px;
+    background-color: aliceblue;
+    height: 70px;
+    font-size: 250%;
+    color: blueviolet;
+}
+
+.nav-footer{
+    position: absolute;
+    bottom: 5px;
+    overflow: hidden;
+}
+
+.nav-item{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.nav-item:hover{
+    opacity: 60%;
+    cursor: pointer;
+    background-color: rgb(90, 92, 102);
+}

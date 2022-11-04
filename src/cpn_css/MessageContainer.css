@@ -1,0 +1,50 @@
+.message-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+    width: 100%;
+    height: calc(98% - 170px);
+    overflow-y: auto;
+}
+
+.msg{
+    background-color: #464852;
+    width: fit-content;
+    max-width: 80%;
+    padding: 7px 16px 7px;
+    border-radius: 7px;
+    word-wrap: break-word;
+}
+
+.out-going{
+    background-color: green;
+    margin-left: auto;
+}
+
+.dt{
+    background: none;
+    margin-bottom: 5px;
+    font-size: 75%;
+    opacity: 80%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

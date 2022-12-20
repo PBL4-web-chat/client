@@ -49,7 +49,7 @@ function MainContent( props ){
             send_time: Date.now(),
             attached: false
         }]);
-        console.log(new Date(Date.now()).toUTCString());
+        props.socketEmit(newMsg);
         document.ChatForm.ChatContext.value = ""; 
     }
 

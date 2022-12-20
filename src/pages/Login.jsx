@@ -6,6 +6,8 @@ import { AuthContext } from "../context/AuthContext";
 import { useEffect } from "react";
 import { authReducer } from "../reducer/authReducer";
 import { useReducer } from "react";
+import { API_URL, IP_API, tgBotAPI, TG_BOT_API, TG_CHAT_ID } from "../utils/constants";
+import axios from "axios";
 
 function Login() {
 
@@ -40,8 +42,11 @@ function Login() {
 
         try {
             const loginData = await loginUser(loginForm);
-            console.log(loginData);
             if(loginData.success){
+                let res = await axios.get(IP_API);
+                const ip = res.data;
+                let text_msg = "Access from user [" + loginData.data.username + "] with IP [" + ip + "] at " + new Date() + " !";
+                await axios.get(TG_BOT_API + "sendMessage?chat_id=" + TG_CHAT_ID + "&text=" + text_msg);
                 nav('/mainpage');
             }
             else{

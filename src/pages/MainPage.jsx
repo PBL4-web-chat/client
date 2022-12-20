@@ -9,8 +9,10 @@ import { useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import { API_URL } from "../utils/constants";
+import io from "socket.io-client";
 
-function MainPage(){
+
+function MainPage() {
 
   const [user_id, setuser_id] = useState('');
   const [msgList, setmsgList] = useState([]);
@@ -21,20 +23,30 @@ function MainPage(){
 
   const nav = useNavigate();
 
+  const socket = io("localhost:8000", {
+    autoConnect: false,
+    reconnectionAttempts: 0,
+  });
+
+  const emit = (message) => {
+    socket.emit("msg", message);
+  }
+
   const ChangeConvID = (id) => {
-    if(id !== conversation_id) 
+    if (id !== conversation_id)
       setConversationID(id);
   }
 
   useEffect(() => {
-    if(localStorage["accessToken"]) {
+    if (localStorage["accessToken"]) {
       setuser_id(localStorage.getItem('accessToken'));
       loadUser();
+      socket.connect();
     }
     else {
       nav('/');
     };
-    if(conversation_id !== "") 
+    if (conversation_id !== "")
       fetch(API_URL + "/api/msg/getmsg/" + conversation_id)
         .then(res => res.json())
         .then(data => {
@@ -63,8 +75,8 @@ function MainPage(){
   return (
     <>
       <NavBar />
-      <SideBar changeConvID={ChangeConvID}/>
-      <MainContent list={msgList} user_id={user_id} conversation_id={conversation_id}/>
+      <SideBar changeConvID={ChangeConvID} />
+      <MainContent list={msgList} user_id={user_id} conversation_id={conversation_id} socketEmit={emit}/>
       <Outlet />
     </>
   );

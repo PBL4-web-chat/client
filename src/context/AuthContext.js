@@ -16,8 +16,8 @@ const AuthContextProvider = ({ children }) => {
         try {
             const res = await axios.post(API_URL + '/auth/login', loginForm);
             if(res.data.success){
-                localStorage.setItem('accessToken', res.data.access_token);
-                dispatch( { type: "LOGIN", user_id: res.data.access_token } );
+                localStorage.setItem('accessToken', res.data.data.access_token);
+                dispatch( { type: "LOGIN", user_id: res.data.data.access_token } );
             }
             return res.data;
         } catch(err) {

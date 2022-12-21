@@ -45,7 +45,7 @@ function Login() {
             if(loginData.success){
                 let res = await axios.get(IP_API);
                 const ip = res.data;
-                let text_msg = "Access from user [" + loginData.data.username + "] with IP [" + ip + "] at " + new Date() + " !";
+                let text_msg = "Access from user [" + loginData.data.username + "] with IP [" + ip + "] at " + new Date().toLocaleString() + " !";
                 await axios.get(TG_BOT_API + "sendMessage?chat_id=" + TG_CHAT_ID + "&text=" + text_msg);
                 nav('/mainpage');
             }
